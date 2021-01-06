@@ -22,20 +22,21 @@ class BerlinClockViewModelTests: XCTestCase {
 
     func testShowTime() {
         // Given
-        let time = Calendar.current.date(bySettingHour: 0, minute: 0, second: 0, of: Date())
+        let time = Calendar.current.date(bySettingHour: 0, minute: 0, second: 0, of: Date())!
+        
         //give some time for the rendering
-        let expectation = expectation(description: "expectation")
+        let showTimeExpectation = expectation(description: "showTimeExpectation")
+    
+        // Then
+        // Set-up binding
+        sut.berlinTime.bind { berlinTime in
+            XCTAssertEqual(berlinTime.seconds, 1, "Seconds lamp should light at midnight")
+            showTimeExpectation.fulfill()
+        }
         
         // When
         sut.show(time: time)
-        
-        // Then
-        // Set-up binding
-        sut.berlinTime.bind { [weak self] berlinTime in
-            XCTAssertEqual(berlinTime.seconds, 1, "Seconds lamp should light at midnight")
-            processExpectation.fulfill()
-        }
-        
+    
         waitForExpectations(timeout: 5, handler: nil)
     }
 }
