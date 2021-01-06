@@ -512,6 +512,33 @@
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="QRl-ni-Fwe" secondAttribute="trailing" constant="10" id="xUY-jx-SXV"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="normalClockLabel" destination="1xg-YK-GkP" id="0C9-7g-hNE"/>
+                        <outlet property="secondsLamp" destination="xSv-zJ-1oc" id="9JF-uJ-aXV"/>
+                        <outletCollection property="oneHourLamps" destination="Mzs-mC-azf" collectionClass="NSMutableArray" id="XPx-DZ-eOn"/>
+                        <outletCollection property="oneHourLamps" destination="qfP-1H-eS7" collectionClass="NSMutableArray" id="wbV-ab-6SO"/>
+                        <outletCollection property="oneHourLamps" destination="u3b-k2-WdX" collectionClass="NSMutableArray" id="Fh5-Vu-1DO"/>
+                        <outletCollection property="oneHourLamps" destination="mi5-lZ-4MR" collectionClass="NSMutableArray" id="qW9-2w-NAi"/>
+                        <outletCollection property="fiveHourLamps" destination="w24-8C-g8A" collectionClass="NSMutableArray" id="zfK-zi-Rgs"/>
+                        <outletCollection property="fiveHourLamps" destination="Epm-Co-AkD" collectionClass="NSMutableArray" id="Dsa-Eg-nuT"/>
+                        <outletCollection property="fiveHourLamps" destination="ra0-gB-CFV" collectionClass="NSMutableArray" id="1FK-L5-SB1"/>
+                        <outletCollection property="fiveHourLamps" destination="xJs-QD-f8K" collectionClass="NSMutableArray" id="0a8-7z-gnA"/>
+                        <outletCollection property="fiveMinuteLamps" destination="8f9-Jt-5Nj" collectionClass="NSMutableArray" id="eKJ-YE-QR4"/>
+                        <outletCollection property="fiveMinuteLamps" destination="ndO-Jj-dGS" collectionClass="NSMutableArray" id="DOr-c3-R9J"/>
+                        <outletCollection property="fiveMinuteLamps" destination="F41-UU-pvQ" collectionClass="NSMutableArray" id="EFz-gn-eVk"/>
+                        <outletCollection property="fiveMinuteLamps" destination="V2Z-dr-kND" collectionClass="NSMutableArray" id="Lbn-db-iEf"/>
+                        <outletCollection property="fiveMinuteLamps" destination="1uB-fl-2fA" collectionClass="NSMutableArray" id="uMm-FW-YUY"/>
+                        <outletCollection property="fiveMinuteLamps" destination="mH3-rd-HFP" collectionClass="NSMutableArray" id="M2e-JQ-UAq"/>
+                        <outletCollection property="fiveMinuteLamps" destination="mUa-wN-r18" collectionClass="NSMutableArray" id="QkN-c8-wE6"/>
+                        <outletCollection property="fiveMinuteLamps" destination="fp4-o4-54N" collectionClass="NSMutableArray" id="sRk-zh-zXc"/>
+                        <outletCollection property="fiveMinuteLamps" destination="bBc-kr-OHQ" collectionClass="NSMutableArray" id="1WC-Mq-tj7"/>
+                        <outletCollection property="fiveMinuteLamps" destination="Csx-sz-k7q" collectionClass="NSMutableArray" id="t6L-Qs-Hbl"/>
+                        <outletCollection property="fiveMinuteLamps" destination="7uU-CX-BBb" collectionClass="NSMutableArray" id="PRP-dE-Av3"/>
+                        <outletCollection property="oneMinuteLamps" destination="l2L-tE-VgV" collectionClass="NSMutableArray" id="JZx-Ty-zU7"/>
+                        <outletCollection property="oneMinuteLamps" destination="jqD-du-1DT" collectionClass="NSMutableArray" id="6AG-K4-A7x"/>
+                        <outletCollection property="oneMinuteLamps" destination="dH7-sl-qTw" collectionClass="NSMutableArray" id="Pg8-w6-iAJ"/>
+                        <outletCollection property="oneMinuteLamps" destination="yDu-uk-yF6" collectionClass="NSMutableArray" id="czh-VF-Vgx"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>

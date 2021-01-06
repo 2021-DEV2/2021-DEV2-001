@@ -8,15 +8,42 @@
 import UIKit
 
 class BerlinClockViewController: UIViewController {
-
+    
+    @IBOutlet var secondsLamp: UIView!
+    @IBOutlet var fiveHourLamps: [UIView]!
+    @IBOutlet var oneHourLamps: [UIView]!
+    @IBOutlet var fiveMinuteLamps: [UIView]!
+    @IBOutlet var oneMinuteLamps: [UIView]!
+    @IBOutlet var normalClockLabel: UILabel!
     
     private var viewModel = BerlinClockViewModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        setupBinding()
     }
-
-
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        viewModel.show(time: Date())
+    }
+    
+    private func setupBinding() {
+        viewModel.berlinTime.bind { [weak self] berlinTime in
+            self?.secondsLamp.isIlluminated = (berlinTime.seconds == 1)
+            self?.fiveHourLamps.enumerated().forEach { index, lamp in
+                lamp.isIlluminated = berlinTime.fiveHour > index
+            }
+            self?.oneHourLamps.enumerated().forEach { index, lamp in
+                lamp.isIlluminated = berlinTime.oneHour > index
+            }
+            self?.fiveMinuteLamps.enumerated().forEach { index, lamp in
+                lamp.isIlluminated = berlinTime.fiveMinute > index
+            }
+            self?.oneMinuteLamps.enumerated().forEach { index, lamp in
+                lamp.isIlluminated = berlinTime.oneMinute > index
+            }
+        }
+    }
 }
 

@@ -20,7 +20,7 @@ class BerlinClockViewModelTests: XCTestCase {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
 
-    func testShowTime() {
+    func testShowBerlinTime() {
         // Given
         let time = Calendar.current.date(bySettingHour: 0, minute: 0, second: 0, of: Date())!
         
@@ -31,6 +31,26 @@ class BerlinClockViewModelTests: XCTestCase {
         // Set-up binding
         sut.berlinTime.bind { berlinTime in
             XCTAssertEqual(berlinTime.seconds, 1, "Seconds lamp should light at midnight")
+            showTimeExpectation.fulfill()
+        }
+        
+        // When
+        sut.show(time: time)
+    
+        waitForExpectations(timeout: 5, handler: nil)
+    }
+    
+    func testShowNormalTime() {
+        // Given
+        let time = Calendar.current.date(bySettingHour: 0, minute: 0, second: 0, of: Date())!
+        
+        //give some time for the rendering
+        let showTimeExpectation = expectation(description: "showTimeExpectation")
+    
+        // Then
+        // Set-up binding
+        sut.normalTime.bind { normalTime in
+            XCTAssertEqual(normalTime, "00:00", "Normal time should indicate 00:00 at midnight")
             showTimeExpectation.fulfill()
         }
         
