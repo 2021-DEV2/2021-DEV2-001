@@ -10,42 +10,89 @@ import XCTest
 @testable import Berlin_Clock
 
 class BerlinClockServiceTests: XCTestCase {
-
+    
+    struct Assertion {
+        // Time format: HH:mm:ss
+        let normalTime: String
+        
+        // Berlin time format: SecondsLamp:FiveHourLamps:OneHourLamps:FiveMinuteLamps:OneMinuteLamps
+        // The character "?" will be used for lamps we don't want to check
+        let berlinTime: String
+        
+        let assertionError: String
+    }
+    
     var berlinClockService: BerlinClockService!
     
     override func setUpWithError() throws {
         berlinClockService = BerlinClockService()
     }
-
+    
     override func tearDownWithError() throws {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
-
+    
+    private func test(assertions: [Assertion]) {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "HH:mm:ss"
+        assertions.forEach { assertion in
+            guard let time = dateFormatter.date(from: assertion.normalTime) else {
+                XCTFail("The time is not specified in the correct format")
+                preconditionFailure()
+            }
+            let calculatedBerlinTime = berlinClockService.convert(time: time)
+            let berlinTimeComponents = assertion.berlinTime.components(separatedBy: ":")
+            
+            // Character "?" will fail converting to Int, and will not be taken into consideration when testing
+            if let seconds = Int(berlinTimeComponents[0]) {
+                XCTAssertEqual(seconds, calculatedBerlinTime.seconds, assertion.assertionError)
+            }
+            
+            if let fiveHour = Int(berlinTimeComponents[1]) {
+                XCTAssertEqual(fiveHour, calculatedBerlinTime.fiveHour, assertion.assertionError)
+            }
+            
+            if let oneHour = Int(berlinTimeComponents[2]) {
+                XCTAssertEqual(oneHour, calculatedBerlinTime.oneHour, assertion.assertionError)
+            }
+            
+            if let fiveMinute = Int(berlinTimeComponents[3]) {
+                XCTAssertEqual(fiveMinute, calculatedBerlinTime.fiveMinute, assertion.assertionError)
+            }
+            
+            if let oneMinute = Int(berlinTimeComponents[4]) {
+                XCTAssertEqual(oneMinute, calculatedBerlinTime.oneMinute, assertion.assertionError)
+            }
+        }
+    }
+    
     func testSecondsLamp() {
-        var time = Calendar.current.date(bySettingHour: 0, minute: 0, second: 0, of: Date())!
-        var berlinTime = berlinClockService.convert(time: time)
-        XCTAssertEqual(berlinTime.seconds, 1, "Seconds lamp should be illuminated for even seconds")
-        
-        time = Calendar.current.date(bySettingHour: 23, minute: 59, second: 59, of: Date())!
-        berlinTime = berlinClockService.convert(time: time)
-        XCTAssertEqual(berlinTime.seconds, 0, "Seconds lamp should be off for odd seconds")
+        let assertions = [
+            Assertion(normalTime: "00:00:00",
+                      berlinTime: "1:?:?:?:?:?",
+                      assertionError: "Seconds lamp should be illuminated for even seconds"),
+            Assertion(normalTime: "23:59:59",
+                      berlinTime: "0:?:?:?:?:?",
+                      assertionError: "Seconds lamp should be off for odd seconds")
+        ]
+        test(assertions: assertions)
     }
     
     func testFiveHoursLamps() {
-        var time = Calendar.current.date(bySettingHour: 0, minute: 0, second: 0, of: Date())!
-        var berlinTime = berlinClockService.convert(time: time)
-        XCTAssertEqual(berlinTime.fiveHour, 0, "Five hour lamps should be all off at midnight")
-        
-        time = Calendar.current.date(bySettingHour: 23, minute: 59, second: 59, of: Date())!
-        berlinTime = berlinClockService.convert(time: time)
-        XCTAssertEqual(berlinTime.fiveHour, 4, "Five hour lamps should be all on one minute before midnight")
-        
-        time = Calendar.current.date(bySettingHour: 2, minute: 4, second: 0, of: Date())!
-        berlinTime = berlinClockService.convert(time: time)
-        XCTAssertEqual(berlinTime.fiveHour, 0, "Five hour lamps should be all off before five'o'clock")
-        
-        time = Calendar.current.date(bySettingHour: 16, minute: 35, second: 0, of: Date())!
-        berlinTime = berlinClockService.convert(time: time)
-        XCTAssertEqual(berlinTime.fiveHour, 3, "Five hour lamps should light 3 items after 15:00")
+        let assertions = [
+            Assertion(normalTime: "00:00:00",
+                      berlinTime: "?:0:?:?:?:?",
+                      assertionError: "Five hour lamps should be all off at midnight"),
+            Assertion(normalTime: "23:59:59",
+                      berlinTime: "?:4:?:?:?:?",
+                      assertionError: "Five hour lamps should be all on one minute before midnight"),
+            Assertion(normalTime: "02:04:00",
+                      berlinTime: "?:0:?:?:?:?",
+                      assertionError: "Five hour lamps should be all off before five'o'clock"),
+            Assertion(normalTime: "16:35:00",
+                      berlinTime: "?:3:?:?:?:?",
+                      assertionError: "Five hour lamps should light 3 items after 15:00")
+        ]
+        test(assertions: assertions)
     }
 }

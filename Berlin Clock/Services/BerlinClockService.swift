@@ -29,9 +29,13 @@ class BerlinClockService {
         var timeFormat = TimeFormat()
         let calendar = Calendar.current
         let seconds = calendar.component(.second, from: time)
+        let hours = calendar.component(.hour, from: time)
         
         // When the number of seconds is odd, the lamp should be turned on
         timeFormat.seconds = 1 - (seconds % 2)
+        
+        timeFormat.fiveHour = hours / 5
+        
         return timeFormat
     }
 }
