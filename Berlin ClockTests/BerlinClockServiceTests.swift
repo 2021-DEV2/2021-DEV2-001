@@ -120,16 +120,16 @@ class BerlinClockServiceTests: XCTestCase {
     func testFiveMinutesLamps() {
         let assertions = [
             Assertion(normalTime: "00:00:00",
-                      berlinTime: "?:?:?:0:?:?",
+                      berlinTime: "?:?:?:0:?",
                       assertionError: "Five minutes lamps should be all off at midnight"),
             Assertion(normalTime: "23:59:59",
-                      berlinTime: "?:?:?:11:?:?",
+                      berlinTime: "?:?:?:11:?",
                       assertionError: "Five minutes lamps should be all on one minute before midnight"),
             Assertion(normalTime: "12:04:00",
-                      berlinTime: "?:?:?:0:?:?",
+                      berlinTime: "?:?:?:0:?",
                       assertionError: "Five minutes lamps should be all off when minutes are lower than five"),
             Assertion(normalTime: "12:23:00",
-                      berlinTime: "?:?:?:4:?:?",
+                      berlinTime: "?:?:?:4:?",
                       assertionError: "Five minutes lamps should light 4 items between 20 and 25 minutes "),
         ]
         test(assertions: assertions)
@@ -138,17 +138,35 @@ class BerlinClockServiceTests: XCTestCase {
     func testOneMinuteLamps() {
         let assertions = [
             Assertion(normalTime: "00:00:00",
-                      berlinTime: "?:?:?:?:0:?",
+                      berlinTime: "?:?:?:?:0",
                       assertionError: "One minute lamps should be all off at midnight"),
             Assertion(normalTime: "23:59:59",
-                      berlinTime: "?:?:?:?:4:?",
+                      berlinTime: "?:?:?:?:4",
                       assertionError: "One minute lamps should be all on one minute before midnight"),
             Assertion(normalTime: "12:32:00",
-                      berlinTime: "?:?:?:?:2:?",
+                      berlinTime: "?:?:?:?:2",
                       assertionError: "One minute lamps should light 2 items when minutes are 32"),
             Assertion(normalTime: "12:34:00",
-                      berlinTime: "?:?:?:?:4:?",
+                      berlinTime: "?:?:?:?:4",
                       assertionError: "One minute lamps should light 4 items when minutes are 34"),
+        ]
+        test(assertions: assertions)
+    }
+    
+    
+    func testEntireClock() {
+
+        let assertions = [
+            Assertion(normalTime: "00:00:00",
+                      berlinTime: "1:0:0:0:0",
+                      assertionError: "At midnight, only the seconds lamp should be on"),
+            Assertion(normalTime: "23:59:59",
+                      berlinTime: "0:4:3:11:4",
+                      assertionError: "One minute before midnight, all lamps should be on, excepting the seconds, and one lamp from one hour lamps"),
+            Assertion(normalTime: "11:37:01",
+                      berlinTime: "0:2:1:7:2",
+                      assertionError: "Testing a more random time should light the lamps accordingly"),
+           
         ]
         test(assertions: assertions)
     }
