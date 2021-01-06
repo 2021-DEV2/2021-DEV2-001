@@ -39,6 +39,8 @@ class BerlinClockService {
         timeFormat.oneHour = hours - (timeFormat.fiveHour * 5)
         
         timeFormat.fiveMinute = minutes / 5
+        timeFormat.oneMinute = minutes - (timeFormat.fiveMinute * 5)
+        
         return timeFormat
     }
 }
