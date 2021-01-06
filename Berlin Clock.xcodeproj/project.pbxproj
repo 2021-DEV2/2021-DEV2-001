@@ -10,7 +10,7 @@
 		BE8FF7F325A62BC500048265 /* BerlinClockService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE8FF7F225A62BC500048265 /* BerlinClockService.swift */; };
 		BEA35D2E25A6059100ADCA9F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEA35D2D25A6059100ADCA9F /* AppDelegate.swift */; };
 		BEA35D3025A6059100ADCA9F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEA35D2F25A6059100ADCA9F /* SceneDelegate.swift */; };
-		BEA35D3225A6059100ADCA9F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEA35D3125A6059100ADCA9F /* ViewController.swift */; };
+		BEA35D3225A6059100ADCA9F /* BerlinClockViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEA35D3125A6059100ADCA9F /* BerlinClockViewController.swift */; };
 		BEA35D3525A6059100ADCA9F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BEA35D3325A6059100ADCA9F /* Main.storyboard */; };
 		BEA35D3725A6059500ADCA9F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BEA35D3625A6059500ADCA9F /* Assets.xcassets */; };
 		BEA35D3A25A6059500ADCA9F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BEA35D3825A6059500ADCA9F /* LaunchScreen.storyboard */; };
@@ -32,7 +32,7 @@
 		BEA35D2A25A6059100ADCA9F /* Berlin Clock.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Berlin Clock.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		BEA35D2D25A6059100ADCA9F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BEA35D2F25A6059100ADCA9F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		BEA35D3125A6059100ADCA9F /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		BEA35D3125A6059100ADCA9F /* BerlinClockViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BerlinClockViewController.swift; sourceTree = "<group>"; };
 		BEA35D3425A6059100ADCA9F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		BEA35D3625A6059500ADCA9F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		BEA35D3925A6059500ADCA9F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -89,10 +89,10 @@
 		BEA35D2C25A6059100ADCA9F /* Berlin Clock */ = {
 			isa = PBXGroup;
 			children = (
+				BEF10BA825A64A5400278C95 /* Scenes */,
 				BE8FF7F125A62BBD00048265 /* Services */,
 				BEA35D2D25A6059100ADCA9F /* AppDelegate.swift */,
 				BEA35D2F25A6059100ADCA9F /* SceneDelegate.swift */,
-				BEA35D3125A6059100ADCA9F /* ViewController.swift */,
 				BEA35D3325A6059100ADCA9F /* Main.storyboard */,
 				BEA35D3625A6059500ADCA9F /* Assets.xcassets */,
 				BEA35D3825A6059500ADCA9F /* LaunchScreen.storyboard */,
@@ -108,6 +108,22 @@
 				BEA35D4625A6059500ADCA9F /* Info.plist */,
 			);
 			path = "Berlin ClockTests";
+			sourceTree = "<group>";
+		};
+		BEF10BA825A64A5400278C95 /* Scenes */ = {
+			isa = PBXGroup;
+			children = (
+				BEF10BA925A64A5D00278C95 /* BerlinClockViewController */,
+			);
+			path = Scenes;
+			sourceTree = "<group>";
+		};
+		BEF10BA925A64A5D00278C95 /* BerlinClockViewController */ = {
+			isa = PBXGroup;
+			children = (
+				BEA35D3125A6059100ADCA9F /* BerlinClockViewController.swift */,
+			);
+			path = BerlinClockViewController;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -210,7 +226,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BEA35D3225A6059100ADCA9F /* ViewController.swift in Sources */,
+				BEA35D3225A6059100ADCA9F /* BerlinClockViewController.swift in Sources */,
 				BEA35D2E25A6059100ADCA9F /* AppDelegate.swift in Sources */,
 				BE8FF7F325A62BC500048265 /* BerlinClockService.swift in Sources */,
 				BEA35D3025A6059100ADCA9F /* SceneDelegate.swift in Sources */,
