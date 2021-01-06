@@ -25,7 +25,7 @@ class BerlinClockViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        viewModel.show(time: Date())
+        viewModel.startShowingTime()
     }
     
     private func setupBinding() {
