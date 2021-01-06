@@ -44,6 +44,10 @@ class BerlinClockViewController: UIViewController {
                 lamp.isIlluminated = berlinTime.oneMinute > index
             }
         }
+        
+        viewModel.normalTime.bind { [weak self] normalTime in
+            self?.normalClockLabel.text = normalTime
+        }
     }
 }
 

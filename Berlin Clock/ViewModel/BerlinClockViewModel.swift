@@ -11,8 +11,15 @@ class BerlinClockViewModel {
     
     let berlinClockService = BerlinClockService()
     var berlinTime = Dynamic(BerlinClockService.TimeFormat())
+    var normalTime = Dynamic(String())
+    var dateFormatter: DateFormatter {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "HH:mm"
+        return dateFormatter
+    }
     
     func show(time: Date) {
         berlinTime.value = berlinClockService.convert(time: time)
+        normalTime.value = dateFormatter.string(from: time)
     }
 }
