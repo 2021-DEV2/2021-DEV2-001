@@ -134,4 +134,22 @@ class BerlinClockServiceTests: XCTestCase {
         ]
         test(assertions: assertions)
     }
+    
+    func testOneMinuteLamps() {
+        let assertions = [
+            Assertion(normalTime: "00:00:00",
+                      berlinTime: "?:?:?:?:0:?",
+                      assertionError: "One minute lamps should be all off at midnight"),
+            Assertion(normalTime: "23:59:59",
+                      berlinTime: "?:?:?:?:4:?",
+                      assertionError: "One minute lamps should be all on one minute before midnight"),
+            Assertion(normalTime: "12:32:00",
+                      berlinTime: "?:?:?:?:2:?",
+                      assertionError: "One minute lamps should light 2 items when minutes are 32"),
+            Assertion(normalTime: "12:34:00",
+                      berlinTime: "?:?:?:?:4:?",
+                      assertionError: "One minute lamps should light 4 items when minutes are 34"),
+        ]
+        test(assertions: assertions)
+    }
 }
