@@ -9,6 +9,9 @@ import UIKit
 
 class BerlinClockViewController: UIViewController {
 
+    
+    private var viewModel = BerlinClockViewModel()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
