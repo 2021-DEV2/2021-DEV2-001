@@ -10,7 +10,7 @@ The app can be run for both iPhone and iPad.
 MVVM Architectural pattern was chosen in order to benefit in the future implementations on a decoupled code, with separation of concerns.  
 MVVM Aproach was handled through binding between ViewModel and View, using the custom helper class <i> Dynamic.swift </i>.  
 No Massive View Controller issues should appear during development.   
-The view controller lifecycle is completly separated from the game's business logic, so unit tests can be written properly as the view model has no dependencies to the View Controller.
+The view controller lifecycle is completly separated from the app's business logic, so unit tests can be written properly as the view model has no dependencies to the View Controller.
 
 ## Main classes
 
